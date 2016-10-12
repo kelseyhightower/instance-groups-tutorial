@@ -19,7 +19,7 @@ Start the Kubernetes kubelet; which will manage our containers:
 
 ```
 sudo systemctl enable kubelet
-sudo systemclt start kubelet
+sudo systemctl start kubelet
 ```
 
 Create a Pod manifest to run the nginx container under the Kubernetes kubelet.
