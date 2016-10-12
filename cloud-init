@@ -1,0 +1,21 @@
+#cloud-config
+
+write_files:
+  - path: etc/kubernetes/manifests/nginx.yaml
+    permissions: 0644
+    owner: root
+    content: |
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: nginx
+      spec:
+        hostNetwork: true
+        containers:
+          - name: nginx
+            image: nginx:1.10.1
+runcmd:
+  - systemctl daemon-reload
+  - systemctl start kubelet
+  - iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+  - iptables-save
